@@ -121,6 +121,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [(os.path.join(BASE_DIR,'static'))]#添加静态文件
 
@@ -131,3 +132,4 @@ LOGIN_REDIRECT_URL = 'todolist'#登录后跳转到todolist页面
 LOGIN_URL = 'login'#未登录状态下点击todolist，跳转到login页面
 
 django_heroku.setting(locals())
+
