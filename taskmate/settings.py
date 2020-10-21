@@ -131,5 +131,5 @@ LOGIN_REDIRECT_URL = 'todolist'#登录后跳转到todolist页面
 
 LOGIN_URL = 'login'#未登录状态下点击todolist，跳转到login页面
 
-django_heroku.setting(locals())
+django_heroku.settings(locals())
 
