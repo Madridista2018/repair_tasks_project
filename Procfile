@@ -1,1 +1,1 @@
-web: gunicorn baoxiu.wsgi
+web: gunicorn taskmate.wsgi
