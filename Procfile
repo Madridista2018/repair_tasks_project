@@ -1,1 +1,1 @@
-web: gunicorn taskmate.wsgi
+web: gunicorn repair_tasks_project.wsgi
