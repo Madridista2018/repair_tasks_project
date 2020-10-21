@@ -4,7 +4,7 @@ from todolist_app import views as todolist_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('todolist/',include('todolist_app.urls')),#后面接todolist_app的url
+    path('',include('todolist_app.urls')),#后面接todolist_app的url
     path('account/',include('users_app.urls')),
     path('contact',todolist_view.contact, name = 'contact'),
     path('about-us',todolist_view.about, name = 'about'), #name= 后接view里被分发的函数,第一个是url路径
