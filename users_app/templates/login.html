@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+   <title>用户登录</title>
+{% endblock title %}
+
+{% comment %} {% load crispy_forms_tags %} {% endcomment %}
+{% comment %} 加载crispy_forms {% endcomment %}
+
+{% block content %}
+     <div class="container">
+     </br>
+        
+        <h2>登录界面</h2>
+        {% if  messages%}   
+            {% for message in messages %}
+                <div class="alert alert-primary" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}        
+
+         <form method="POST" class="mt-5 col-6">
+            {% csrf_token %}
+    {% comment %} 目的：
+            csrf_token 是为了防止csrf（跨站请求伪造），什么是csrf，这篇文章讲的很好：这里。文章最后也说到了，防止csrf的手段就有给form加个token。
+    具体做了什么：
+            在渲染模板时，django会把    {% csrf_token %} 替换成一个<input type="hidden", name='csrfmiddlewaretoken' value=服务器随机生成的token>元素。在提交表单的时候，会把这个token给提交上去。
+            django默认启动 'django.middleware.csrf.CsrfViewMiddleware'中间件， 这个中间件就是来验证csrf_token的。如果没有加csrf_token，就会出错。 
+    {% endcomment %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary mb-5">登录</button>
+         </form>
+     </div>
+{% endblock content %}

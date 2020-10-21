@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}
+   <title>修改报修内容</title>
+{% endblock title %}
+
+{% block content %}
+     <div class="container">
+         </br>
+         {% if task_obj.manage == request.user %}
+         
+         <form method="POST" class="row">
+            {% csrf_token %} 
+            <label class="col-lg-2"></label>
+            <input type="text" class="form-control col-lg-6" name="task" placeholder="{{ task_obj.task }}" value="{{ task_obj.task }}">
+            <input type="hidden" name="done" value="{{ task_obj.done }}">
+            <button type="submit" class="btn btn-primary col-lg-2">更新报修</button>
+          </form>
+         {% else %}
+            <p>该报修不允许非发起人修改</p>
+         {% endif %}
+     </div>
+{% endblock content %}
