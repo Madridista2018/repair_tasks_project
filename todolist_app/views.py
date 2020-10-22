@@ -16,13 +16,13 @@ def todolist(request):
         messages.success(request,("添加成功"))#添加成功返回消息
         return redirect('todolist')
     else:
-        #all_tasks = TaskList.objects.all()#接收所有任务对象,一定要加（）
-        user_tasks = TaskList.objects.filter(manage = request.user)#当前显示的任务为登录用户所提交的
-        paginator = Paginator(user_tasks, 5)#每页展示5个对象
+        all_tasks = TaskList.objects.all()#接收所有任务对象,一定要加（）
+        #user_tasks = TaskList.objects.filter(manage = request.user)#当前显示的任务为登录用户所提交的
+        paginator = Paginator(all_tasks, 5)#每页展示5个对象
         page = request.GET.get('pg')#接收request中变量名为pg的值,即request所请求的页数
-        user_tasks = paginator.get_page(page)#获取特定page 的task对象，此时all——tasks包含对象个数为5个
+        all_tasks = paginator.get_page(page)#获取特定page 的task对象，此时all——tasks包含对象个数为5个
 
-        return render(request,'todolist.html',{'user_tasks' : user_tasks})
+        return render(request,'todolist.html',{'all_tasks' : all_tasks})
         #使用render方法将第三个参数中的值替换Template中的指定模板参数，最终返回一个正常的HTML页面。
 
 @login_required
