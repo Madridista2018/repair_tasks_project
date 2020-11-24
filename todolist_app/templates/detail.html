@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}
+   <title>报修内容详情</title>
+{% endblock title %}
+
+{% block content %}
+     <div class="container">
+     </br>
+        <table class="table table-striped text-center">
+            <thead class="thead-dark">
+              <tr class="row">
+                <th class="col-3">报修内容</th>
+                <th class="col-2">联系电话</th>
+                <th class="col-2">邮箱</th>
+                <th class="col-1">教学楼</th>
+                <th class="col-1">教室编号</th>
+                <th class="col-2">报修类型</th>
+                <th class="col-1">维修状态</th>
+                {% comment %} <th class="col-1.5">添加时间</th> {% endcomment %}
+                {% comment %}  bootstrap 一行有12格，分配每一个元素所占格数 {% endcomment %}
+              </tr>
+            </thead>
+            <tbody>
+            {% if obj.done %}
+              <tr class="row"> 
+                <th scope="row" class="col-3">{{ obj.task }}</th>
+                <th scope="row" class="col-2">{{ obj.phoneNum }}</th>
+                <th scope="row" class="col-2">{{ obj.mailNum }}</th>
+                <th scope="row" class="col-1">{{ obj.building }}</th>
+                <th scope="row" class="col-1">{{ obj.classroomId }}</th>
+                <th scope="row" class="col-2">{{ obj.repairType }}</th>
+                <th scope="row" class="col-1">已完成</th>
+                {% comment %} <th scope="row" class="col-1.5">{{ obj.addDate |date:'Y-n-d' }}</th> {% endcomment %}
+              </tr>
+              {% else %}
+              <tr class="row"> 
+                <th scope="row" class="col-3">{{ obj.task }}</th>
+                <th scope="row" class="col-2">{{ obj.phoneNum }}</th>
+                <th scope="row" class="col-2">{{ obj.mailNum }}</th>
+                <th scope="row" class="col-1">{{ obj.building }}</th>
+                <th scope="row" class="col-1">{{ obj.classroomId }}</th>
+                <th scope="row" class="col-2">{{ obj.repairType }}</th>
+                <th scope="row" class="col-1">未完成</th>
+                {% comment %} <th scope="row" class="col-1.5">{{ obj.addDate |date:'Y-n-d' }}</th> {% endcomment %}
+              </tr>
+              {% endif %}
+            </br>
+            </br> 
+            </tbody>
+         </table>
+     </div>
+{% endblock content %}

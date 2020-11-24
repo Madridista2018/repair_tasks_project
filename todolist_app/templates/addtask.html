@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block title %}
-   <title>修改报修内容</title>
+   <title>提交报修内容</title>
 {% endblock title %}
 
 {% block content %}
      <div class="container">
          </br>
-         {% if task_obj.manage == request.user %}  
+          
             <table class="table table-striped text-center">
             <thead class="thead-dark">
               <tr class="row">
@@ -16,13 +16,13 @@
                 <th class="col-2">教学楼</th>
                 <th class="col-2">教室编号</th>
                 <th class="col-2">报修类型</th>
-                {% comment %}  bootstrap 一行有12格，分配每一个元素所占格数 {% endcomment %}
+                 {% comment %}  bootstrap 一行有12格，分配每一个元素所占格数 {% endcomment %}
               </tr>
             </thead>
             <tbody>
             <tr class="row">
-         <form method="POST" class="row">
-             {% csrf_token %}
+            <form method="POST" class="row" >
+                {% csrf_token %}
                 <td class="col-2"><input type="text" class="form-control col-lg-12" name="task" placeholder="请添加报修内容"></td>
                 <td class="col-2"><input type="mail" class="form-control col-lg-10" name="mailNum" placeholder="请添加邮箱"></td>
                 <td class="col-2"><input type="number" class="form-control col-lg-11" name="phoneNum" placeholder="请添加电话号码"></td>
@@ -38,14 +38,13 @@
                 </td>
                 <button type="submit" class="btn btn-primary col-lg-2">添加报修</button>
                 
+            </form>
+                
+
+    
+            </tr>
             </br>
             </tbody>
-            </br>
-            </tr>
-         </form>
-         {% else %}
-            <p>该报修不允许非发起人修改</p>
-         {% endif %}
-     </div>
+            </br> 
+    </div>
 {% endblock content %}
-

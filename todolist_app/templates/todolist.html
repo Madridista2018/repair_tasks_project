@@ -16,18 +16,16 @@
             </div>
         {% endfor %}
     {% endif %}        
-     <form method="POST" class="row">
-        {% csrf_token %} 
-        <label class="col-lg-4"></label>
-        <input type="text" class="form-control col-lg-6" name="task" placeholder="请添加报修内容">
-        <button type="submit" class="btn btn-primary col-lg-2">添加报修</button>
-      </form>
+    
+        <a href="{% url 'addtask'%}"><button type="button" class="btn btn-primary col-lg-2">添加报修</button></a>
+    </br> 
     </br> 
         <table class="table table-striped text-center">
             <thead class="thead-dark">
               <tr class="row">
-                <th class="col-5">报修内容</th>
-                <th class="col-3">完成/否</th>
+                <th class="col-4">报修内容</th>
+                <th class="col-2">详情</th>
+                <th class="col-2">完成/否</th>
                 <th class="col-2">修改</th>
                 <th class="col-2">删除</th>
                 {% comment %}  bootstrap 一行有12格，分配每一个元素所占格数 {% endcomment %}
@@ -38,15 +36,17 @@
                 {% for obj in all_tasks %}
                     {% if obj.done %}
                         <tr class="row"> 
-                            <th scope="row" class="col-5"><del>{{ obj.task }}</del></th>
-                            <td class="col-3"><a href="{% url 'pend_task' obj.id %}">已完成</a></td>
+                            <th scope="row" class="col-4"><del>{{ obj.task }}</del></th>
+                            <td class="col-2"><a href="{% url 'detail' obj.id%}">详情</a></td>
+                            <td class="col-2">已完成</td>
                             <td class="col-2"><a href="{% url 'edit_task' obj.id %}"><button type="button" class="btn btn-info">修改</button></a></td>
                             <td class="col-2"><a href="{% url 'delete_task' obj.id %}"><button type="button" class="btn btn-primary">删除</button></a></td>
                         </tr>
                     {% else %}
                         <tr class="table-danger row"> 
-                            <th scope="row" class="col-5">{{ obj.task }}</th>
-                            <td class="col-3"><a href="{% url 'complete_task' obj.id %}"><button type="button" class="btn btn-outline-secondary">已处理</button></a></td>
+                            <th scope="row" class="col-4">{{ obj.task }}</th>
+                            <td class="col-2"><a href="{% url 'detail' obj.id %}">详情</a></td>
+                            <td class="col-2"><a href="{% url 'complete_task' obj.id %}"><button type="button" class="btn btn-outline-secondary">未完成</button></a></td>
                             <td class="col-2"><a href="{% url 'edit_task' obj.id %}"><button type="button" class="btn btn-info">修改</button></a></td>
                             <td class="col-2"><a href="{% url 'delete_task' obj.id %}"><button type="button" class="btn btn-primary">删除</button></a></td>
                         </tr>
